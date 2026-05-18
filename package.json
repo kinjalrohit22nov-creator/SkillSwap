@@ -1,0 +1,30 @@
+{
+  "name": "skillswap",
+  "version": "1.0.0",
+  "description": "Peer-to-peer skill exchange platform with token-based economy",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "gateway",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "db:migrate": "turbo run db:migrate --filter=user-service",
+    "db:seed": "turbo run db:seed --filter=user-service",
+    "clean": "turbo clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^1.10.0",
+    "eslint": "^8.48.0",
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

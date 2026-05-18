@@ -1,0 +1,12 @@
+{
+  "name": "@skillswap/shared",
+  "version": "1.0.0",
+  "description": "Shared utilities, types, and constants",
+  "main": "index.js",
+  "private": true,
+  "exports": {
+    "./types": "./types/index.ts",
+    "./events": "./events/index.js",
+    "./utils": "./utils/index.js"
+  }
+}

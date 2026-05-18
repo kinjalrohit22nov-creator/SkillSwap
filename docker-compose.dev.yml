@@ -1,0 +1,40 @@
+services:
+  postgres:
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    command:
+      - "postgres"
+      - "-c"
+      - "shared_preload_libraries=pg_stat_statements"
+
+  user-service:
+    volumes:
+      - ./services/user-service/src:/app/src
+    command: npm run dev
+
+  match-service:
+    volumes:
+      - ./services/match-service/src:/app/src
+    command: npm run dev
+
+  session-service:
+    volumes:
+      - ./services/session-service/src:/app/src
+    command: npm run dev
+
+  token-service:
+    volumes:
+      - ./services/token-service/src:/app/src
+    command: npm run dev
+
+  ai-service:
+    volumes:
+      - ./services/ai-service/src:/app/src
+    command: npm run dev
+
+  web:
+    volumes:
+      - ./apps/web/app:/app/app
+      - ./apps/web/components:/app/components
+      - ./apps/web/lib:/app/lib
+    command: npm run dev

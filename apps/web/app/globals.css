@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#0D0D0D] text-[#F5F5F5];
+  }
+
+  button {
+    @apply transition-all duration-200;
+  }
+
+  input, textarea, select {
+    @apply bg-[#1C1C1C] border border-[#2A2A2A] text-[#F5F5F5] focus:ring-2 focus:ring-[#F59E0B] focus:border-transparent;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-[#F59E0B] text-black rounded-lg font-semibold hover:brightness-110 active:brightness-95;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 border border-[#F59E0B] text-[#F59E0B] rounded-lg font-semibold hover:bg-[#F59E0B] hover:text-black;
+  }
+
+  .btn-ghost {
+    @apply px-6 py-3 text-[#737373] rounded-lg font-semibold hover:bg-[#141414] hover:text-[#F5F5F5];
+  }
+
+  .card {
+    @apply bg-[#141414] border border-[#2A2A2A] rounded-xl p-6;
+  }
+
+  .card-elevated {
+    @apply bg-[#1C1C1C] border border-[#2A2A2A] rounded-xl p-6 hover:shadow-lg hover:shadow-[#F59E0B]/10;
+  }
+
+  .badge-teaching {
+    @apply inline-block px-3 py-1 bg-[#F59E0B]/15 text-[#F59E0B] rounded-full text-xs font-medium;
+  }
+
+  .badge-learning {
+    @apply inline-block px-3 py-1 bg-[#10B981]/15 text-[#10B981] rounded-full text-xs font-medium;
+  }
+
+  .token-badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 bg-[#F59E0B]/15 text-[#F59E0B] rounded-full text-sm font-mono;
+  }
+}
