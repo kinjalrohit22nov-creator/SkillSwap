@@ -1,14 +1,33 @@
 "use client"
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { useAuthStore } from '@/store/authStore'
 
 export default function RegisterPage() {
   const router = useRouter()
+  const login = useAuthStore(state => state.login)
+
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulated registration success
+
+    // Simulate successful registration response
+    const mockUser = {
+      id: 'usr_' + Math.random().toString(36).substr(2, 9),
+      name: name || 'Aakash Ranjan',
+      email: email || 'your@email.com',
+      tokenBalance: 48,
+    }
+    // Mock JWT token
+    const mockToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzcl9tZW1iZXIiLCJlbWFpbCI6Im1lbWJlckBza2lsbHN3YXAuYXBwIn0.mockSignature'
+    
+    // Store globally in Zustand state & local secure Cookies
+    login(mockUser, mockToken)
     router.push('/dashboard')
   }
 
@@ -38,6 +57,8 @@ export default function RegisterPage() {
             <input
               required
               type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="w-full bg-[#0D0D0D] border border-[#2A2A2A] rounded-xl px-4 py-3 text-sm text-white focus:ring-2 focus:ring-[#F59E0B] focus:border-transparent outline-none"
               placeholder="John Doe"
             />
@@ -47,6 +68,8 @@ export default function RegisterPage() {
             <input
               required
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full bg-[#0D0D0D] border border-[#2A2A2A] rounded-xl px-4 py-3 text-sm text-white focus:ring-2 focus:ring-[#F59E0B] focus:border-transparent outline-none"
               placeholder="your@email.com"
             />
@@ -56,6 +79,8 @@ export default function RegisterPage() {
             <input
               required
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full bg-[#0D0D0D] border border-[#2A2A2A] rounded-xl px-4 py-3 text-sm text-white focus:ring-2 focus:ring-[#F59E0B] focus:border-transparent outline-none"
               placeholder="••••••••"
             />

@@ -2,13 +2,26 @@
 
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { useAuthStore } from '@/store/authStore'
 
 export default function LoginPage() {
   const router = useRouter()
+  const login = useAuthStore(state => state.login)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulated authentication success
+    // Simulate successful login response
+    const mockUser = {
+      id: 'usr_1001',
+      name: 'Aakash Ranjan',
+      email: 'aakash@skillswap.app',
+      tokenBalance: 48,
+    }
+    // Mock JWT token
+    const mockToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzcl8xMDAxIiwiZW1haWwiOiJhYWthc2hAc2tpbGxzd2FwLmFwcCJ9.mockSignature'
+    
+    // Store globally in Zustand state & local secure Cookies
+    login(mockUser, mockToken)
     router.push('/dashboard')
   }
 
